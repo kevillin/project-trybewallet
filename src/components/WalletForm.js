@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import fetchAPI from './fetchAPI';
+// import fetchAPI from './fetchAPI';
 
 class WalletForm extends Component {
-  // state = {
-  //   coins: {},
-  // };
+  state = {
+    // coins: {},
+  };
 
   async componentDidMount() {
     await this.puxaAPI();
   }
 
   puxaAPI = async () => {
-    const API = await fetchAPI();
-    console.log(await API);
+    // const API = await fetchAPI();
+    // this.setState({ coins: API });
   };
 
   render() {
+    // const { coins } = this.state;
     return (
       <div>
         <h1>WalletForm</h1>

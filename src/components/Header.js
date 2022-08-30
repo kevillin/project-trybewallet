@@ -3,28 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Header extends Component {
-  // state = {
-  //   totalDespesas: 0,
-  //   valorTotal: '',
-  // };
-
-  // componentDidMount() {
-  //   this.mudaValorTotal();
-  // }
-
-  // mudaValorTotal = () => {
-  //   const { totalDespesas, valorTotal } = this.state;
-  //   this.setState({ valorTotal: totalDespesas });
-  // };
-
   render() {
     const { email } = this.props;
-    // const { valorTotal } = this.state;
     return (
       <>
         <div>Header</div>
-        <h3 data-testid="email-field">{ email }</h3>
-        <input name="valorTotal" type="number" data-testid="total-field" value="0" />
+        <h3 data-testid="email-field">{email}</h3>
+        <h2 data-testid="total-field">0</h2>
         <select data-testid="header-currency-field">
           <option value="brl">BRL</option>
           <option value="usd">USD</option>
