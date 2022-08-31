@@ -1,16 +1,27 @@
+import fetchAPI from '../../services/fetchAPI';
+
 // Coloque aqui suas actions
 export const GET_USER = 'GET_USER';
 export const GET_WALLET = 'GET_WALLET';
-export const GET_API = 'GET_API';
+export const REQUEST_API = 'REQUEST_API';
+export const RECEIVE_API = 'RECEIVE_API';
+export const FAILURE_API = 'FAILURE_API';
 
 export const getUser = (payload) => ({ type: GET_USER, payload });
 export const getWallet = (payload) => ({ type: GET_WALLET, payload });
-export const getAPI = (payload) => ({ type: GET_API, payload });
+export const requestAPI = () => ({ type: REQUEST_API });
+export const receiveAPI = (payload) => ({ type: RECEIVE_API, payload });
+export const failureAPI = (error) => ({ type: FAILURE_API, error });
 
-export const fetchCoins = () => async (dispatch) => {
-  const request = await fetch('https://economia.awesomeapi.com.br/json/all');
-  const requestJson = await request.json();
-  const arrayValues = Object.entries(requestJson);
-  console.log(arrayValues);
-  dispatch(getAPI(arrayValues));
+export const fetchAPICoins = () => async (dispatch) => {
+  dispatch(requestAPI());
+
+  try {
+    const responseAPI = await fetchAPI();
+    const responseObj = Object.keys(responseAPI);
+    const arrayFiltrado = responseObj.filter((name) => name !== 'USDT');
+    dispatch(getWallet(arrayFiltrado));
+  } catch (error) {
+    dispatch(failureAPI(error));
+  }
 };
