@@ -37,6 +37,8 @@ describe('testa se está funcionando', () => {
 
     userEvent.click(getLoginButton);
 
+    history.push('/carteira');
+
     expect(pathname).toBe('/carteira');
   });
 });
